@@ -42,7 +42,7 @@ const LoginForm = () => {
             
           })
         }
-        if(error.response.data.errors[0].msg==="password not valid , at least 6 caracters"){
+        else if(error.response.data.errors[0].msg==="password not valid , at least 6 caracters"){
           Swal.fire({
             icon: 'error',
             title: 'Oops...',

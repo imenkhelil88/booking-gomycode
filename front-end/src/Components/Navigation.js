@@ -1,4 +1,4 @@
-import React from 'react'
+
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Form from 'react-bootstrap/Form';
@@ -8,7 +8,12 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import HostAdd from './Host/HostAdd';
 
 
-const Navigation = ({setSearch}) => {
+const Navigation = ({setSearch}) => 
+{
+ 
+  
+
+ 
   return (
     <div> 
     <Navbar bg="light" expand="lg">
@@ -34,6 +39,7 @@ const Navigation = ({setSearch}) => {
             </NavDropdown.Item>
           </NavDropdown>
           <HostAdd/>
+         
         </Nav>
         <Form className="d-flex">
           <Form.Control

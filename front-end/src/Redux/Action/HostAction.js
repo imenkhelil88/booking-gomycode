@@ -17,6 +17,7 @@ export const Add_host=(data)=>async(dispatch)=>{
         console.log(error)
     }
 }
+
 export const Delete_host=(id)=>async(dispatch)=>{
     try {
         await axios.delete(`/host/delete/${id}`)

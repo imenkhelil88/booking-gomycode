@@ -1,7 +1,7 @@
 const express=require("express")
 const user = require("../models/user")
 const { isAuth } = require("../middleware/isAuth")
-const { GetUser, DeleteUser, EditUser, GetOne, Register, Login, Logout } = require("../controllers/controllerUser")
+const { GetUser, DeleteUser, EditUser, GetOne, Register, Login, Logout, GetProfile } = require("../controllers/controllerUser")
 const { registervalidation, validation, loginvalidation } = require("../middleware/validator")
 const userRoutes=express.Router()
 
@@ -17,5 +17,6 @@ userRoutes.get("/",GetUser)
 userRoutes.delete("/:id",DeleteUser)
 userRoutes.put("/edit/:id",EditUser)
 userRoutes.post("/filter",GetOne)
+userRoutes.get("/profile/:id",GetProfile)
 
 module.exports=userRoutes

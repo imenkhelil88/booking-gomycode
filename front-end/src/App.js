@@ -3,7 +3,7 @@ import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import LoginForm from './Components/LoginForm';
 import HostList from './Components/Host/HostList';
-import Hello from './Components/Hello';
+import ReservationList from './Components/Reservation/ReservationList';
 
  
 function App() {
@@ -15,7 +15,7 @@ function App() {
    
     <Route path ="/" element={<LoginForm/>}/>
     <Route path ="/host" element={<HostList/>}/>
-    <Route path="/hello" element ={<Hello/>}/>
+    <Route path="/reservation" element ={<ReservationList/>}/>
     
     </Routes>
      

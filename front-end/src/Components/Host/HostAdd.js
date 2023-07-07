@@ -18,14 +18,23 @@ const HostAdd = () => {
     const[description,setDescription]=useState("")
     const[price,setPrice]=useState("")
     const[address,setAddress]=useState("")
+    
    
     const handleAdd=()=>{
         dispatch(Add_host({destination,room,image,description,price,address}),handleClose())
     }
+    // const handleAdmin=(data)=>{
+    //   if(data.user.role==='admin'){
+    //     {handleShow()}
+    //     console.log(data.user.role)
+    //   }
+      
+    //  }
+   
   return (
     <div>
-    <Button variant="primary" style={{borderRadius:"50%"}} onClick={handleShow}>
-        +
+    <Button variant="primary"  onClick={handleShow} >
+        add Host
     </Button>
 
       <Modal show={show} onHide={handleClose}>

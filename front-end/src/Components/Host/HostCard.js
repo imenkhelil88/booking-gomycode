@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
 import { useDispatch } from 'react-redux';
 import { Delete_host, Edit_host } from '../../Redux/Action/HostAction';
+import ReservationAdd from '../Reservation/ReservationAdd';
 
 const HostCard = ({el}) => {
   const dispatch=useDispatch()
@@ -18,13 +19,12 @@ const HostCard = ({el}) => {
   const[description,setDescription]=useState(el?.description)
   const[price,setPrice]=useState(el?.price)
   const[address,setAddress]=useState(el?.address)
-  // const[bookedTimeSlots,setBookedTimeSlots]=useState(el?.bookedTimeSlots)
   const handleEdit=()=>{
     dispatch(Edit_host(el._id,{destination,room,image,description,price,address}),handleClose(),window.location.reload())
   }
   return (
     <div>
-       <Card style={{ width: '18rem' }}>
+       <Card style={{ width: '25rem' }}>
       <Card.Img variant="top" src={el?.image} alt='404' />
       <Card.Body>
         <Card.Title>{el?.destination}</Card.Title>
@@ -33,7 +33,7 @@ const HostCard = ({el}) => {
          {el?.description}
          {el?.address}
          {el?.price}
-        //  {el?.bookedTimeSlots}
+      
 
         </Card.Text>
         
@@ -43,6 +43,10 @@ const HostCard = ({el}) => {
       <Button variant="warning"  onClick={handleShow}>
        Edit
     </Button>
+   
+    <ReservationAdd 
+    show={show}
+    handleClose={handleClose}/>
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
@@ -97,6 +101,7 @@ const HostCard = ({el}) => {
       </Modal>
       </Card.Footer>
     </Card>
+   
     </div>
   )
 }

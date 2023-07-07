@@ -104,3 +104,12 @@ exports.GetOne=async(req,res)=>{
         res.status(500).send(error)   
     }
 }
+exports.GetProfile=async(req,res)=>{
+    
+    try {
+        const user=await userSchema.findById(user.params)
+        res.status(200).send({msg:"user profile", user})
+    } catch (error) {
+        res.status(500).send(error)   
+    }
+}
