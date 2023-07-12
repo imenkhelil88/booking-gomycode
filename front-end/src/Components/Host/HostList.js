@@ -15,7 +15,7 @@ const HostList = () => {
  
     const [search,setSearch]=useState('')
   return (
-    <div>
+    <div> 
     {<Navigation  setSearch={setSearch}/>}
     {hosts?.filter((el)=>el.destination.toUpperCase().includes(search.toUpperCase()))?.map((el)=><HostCard key={el._id} el={el}/>)}
    

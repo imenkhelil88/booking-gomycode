@@ -19,8 +19,11 @@ const LoginForm = () => {
         email:email,
         password:password
       }).then((response)=>{
-        console.log(response)
-        navigate("/host")
+        if(response.data.msg==="login success"){
+          navigate("/host")
+localStorage.setItem("token",response.data.token)
+        }
+        
       })
       .catch((error)=>{
         console.log(error)

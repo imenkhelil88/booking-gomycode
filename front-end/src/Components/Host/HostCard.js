@@ -39,7 +39,7 @@ const HostCard = ({el}) => {
         
       </Card.Body>
       <Card.Footer>
-      <Button variant="danger" onClick={()=>dispatch(Delete_host(el._id),window.location.reload())}>Delete</Button>
+      <Button variant="danger" onClick={()=>dispatch(Delete_host(el._id),window.location.reload())} >Delete</Button>
       <Button variant="warning"  onClick={handleShow}>
        Edit
     </Button>

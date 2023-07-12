@@ -6,6 +6,8 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import HostAdd from './Host/HostAdd';
+import { Link } from 'react-router-dom';
+
 
 
 const Navigation = ({setSearch}) => 
@@ -29,9 +31,11 @@ const Navigation = ({setSearch}) =>
           <Nav.Link >Home</Nav.Link>
          
           <NavDropdown title="Link" id="navbarScrollingDropdown">
-            <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
+          <Link to='/user'>
+            <NavDropdown.Item href="#action3">Profile</NavDropdown.Item>
+            </Link>
             <NavDropdown.Item href="#action4">
-              Another action
+            
             </NavDropdown.Item>
             <NavDropdown.Divider />
             <NavDropdown.Item href="#action5">
@@ -39,6 +43,7 @@ const Navigation = ({setSearch}) =>
             </NavDropdown.Item>
           </NavDropdown>
           <HostAdd/>
+          
          
         </Nav>
         <Form className="d-flex">
