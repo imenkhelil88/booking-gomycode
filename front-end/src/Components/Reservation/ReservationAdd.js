@@ -1,36 +1,37 @@
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Add_reservation } from '../../Redux/Action/ReservationAction';
 import { useNavigate } from 'react-router-dom';
+import { Get_user, get_one_user } from '../../Redux/Action/UserAction';
 
-const ReservationAdd = () => {
+const ReservationAdd = ({host_id}) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const navigate=useNavigate()
     const dispatch=useDispatch()
-    const[host,setHost]=useState("")
-  const[user,setUser]=useState("")
+  
   const[dateDebut,setDateDebut]=useState("")
   const[dateFin,setDateFin]=useState("")
   const[totalPrice ,setTotalPrice ]=useState("")
-    
+  useEffect(()=>{
+    var token=localStorage.getItem("token")
+    dispatch(Get_user())
+    dispatch(get_one_user(token))
+
+  })
+  const userId = useSelector((state)=>state.UserReducer.oneuser)
    
     const handleAdd=()=>{
-        dispatch(Add_reservation({host,user,dateDebut,dateFin,totalPrice}),handleClose(),navigate('/reservation'))
+      var useid=userId._id
+        dispatch(Add_reservation({host_id,useid,dateDebut,dateFin,totalPrice}),handleClose(),navigate('/reservation'))
     }
-    // const handleAdmin=(data)=>{
-    //   if(data.user.role==='admin'){
-    //     {handleShow()}
-    //     console.log(data.user.role)
-    //   }
-      
-    //  }
+   
    
   return (
     <div>
@@ -43,16 +44,7 @@ const ReservationAdd = () => {
           <Modal.Title>Add Reservation</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Form.Group className="mb-3" controlId="formBasic">
-        <Form.Label>Host</Form.Label>
-        <Form.Control type="text" placeholder="Enter host" onChange={(e)=>setHost(e.target.value)} 
-        value={host} />
-      </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasic">
-        <Form.Label>User</Form.Label>
-        <Form.Control type="text" placeholder="Enter image" onChange={(e)=>setUser(e.target.value)} 
-        value={user} />
-      </Form.Group>
+       
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Date de debut du séjour</Form.Label>
         <Form.Control type="text" placeholder="Enter date début" onChange={(e)=>setDateDebut(e.target.value)} 

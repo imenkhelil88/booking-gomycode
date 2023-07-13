@@ -11,14 +11,13 @@ const ReservationList = () => {
         dispatch(Get_reservation())
       
       }, [dispatch])
-    const reservations=useSelector(state=>state.ReservationReducer.reservations)
- 
-    const [search,setSearch]=useState('')
+    const  reservations=useSelector(state=>state.ReservationReducer.reservations)
+ console.log(reservations)
+    
   return (
     <div>
-    {<Navigation  setSearch={setSearch}/>}
-    {reservations?.filter((el)=>el.destination.toUpperCase().includes(search.toUpperCase()))?.map((el)=><RervationCard key={el._id} el={el}/>)}
-   
+    
+    {reservations?.map((el)=><RervationCard key={el._id} el={el}/>)}   
     
     </div>
   )

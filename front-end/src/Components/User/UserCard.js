@@ -20,7 +20,6 @@ const UserCard = ({el}) => {
   const[birthdate,setBirthDate]=useState(el?.birthdate)
   const[image,setImage]=useState(el?.image)
   const[phone,setPhone]=useState(el?.phone)
-  // const[role,setRole]=useState(el?.role)
   const handleEdit=()=>{
     dispatch(Edit_user(el._id,{name,email,password,birthdate,image,phone}),handleClose(),window.location.reload())
   }
@@ -29,7 +28,7 @@ const UserCard = ({el}) => {
     <Card style={{ width: '25rem' }}>
     <Card.Img variant="top" src={el?.image} alt='404' />
     <Card.Body>
-      <Card.Title>{el?.nom}</Card.Title>
+      <Card.Title>{el?.name}</Card.Title>
       <Card.Text>
        {el?.email}
        {el?.password}

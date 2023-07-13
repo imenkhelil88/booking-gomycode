@@ -41,3 +41,16 @@ exports.Getone=async(req,res)=>{
         res.status(500).send(error)   
     }
 }
+// exports.ReservationRef=async (req, res) => {
+//     const userId = req.params.userId;
+  
+//     try {
+//       // Récupérer l'utilisateur avec les hôtes référencés
+//       const user = await user.findById(userId).populate('hosts');
+  
+//       res.json(user);
+//     } catch (error) {
+//       console.error(error);
+//       res.status(500).json({ error: 'Erreur lors de la récupération de l\'utilisateur.' });
+//     }
+//   };

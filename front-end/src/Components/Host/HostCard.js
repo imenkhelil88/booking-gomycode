@@ -1,11 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Delete_host, Edit_host } from '../../Redux/Action/HostAction';
 import ReservationAdd from '../Reservation/ReservationAdd';
+import { Get_user, get_one_user } from '../../Redux/Action/UserAction';
 
 const HostCard = ({el}) => {
   const dispatch=useDispatch()
@@ -19,6 +20,13 @@ const HostCard = ({el}) => {
   const[description,setDescription]=useState(el?.description)
   const[price,setPrice]=useState(el?.price)
   const[address,setAddress]=useState(el?.address)
+  useEffect(()=>{
+    var token=localStorage.getItem("token")
+    dispatch(Get_user())
+    dispatch(get_one_user(token))
+
+  })
+  const role = useSelector((state)=>state.UserReducer.oneuser)
   const handleEdit=()=>{
     dispatch(Edit_host(el._id,{destination,room,image,description,price,address}),handleClose(),window.location.reload())
   }
@@ -39,12 +47,13 @@ const HostCard = ({el}) => {
         
       </Card.Body>
       <Card.Footer>
-      <Button variant="danger" onClick={()=>dispatch(Delete_host(el._id),window.location.reload())} >Delete</Button>
-      <Button variant="warning"  onClick={handleShow}>
+      {role.role==="admin"?<Button variant="danger" onClick={()=>dispatch(Delete_host(el._id),window.location.reload())} >Delete</Button>:null}
+     { role.role==="admin"?<Button variant="warning"  onClick={handleShow}>
        Edit
-    </Button>
+    </Button>:null}
    
     <ReservationAdd 
+    host_id={el._id}
     show={show}
     handleClose={handleClose}/>
 

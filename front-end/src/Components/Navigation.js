@@ -31,15 +31,18 @@ const Navigation = ({setSearch}) =>
           <Nav.Link >Home</Nav.Link>
          
           <NavDropdown title="Link" id="navbarScrollingDropdown">
+          
           <Link to='/user'>
             <NavDropdown.Item href="#action3">Profile</NavDropdown.Item>
             </Link>
-            <NavDropdown.Item href="#action4">
             
-            </NavDropdown.Item>
+           
             <NavDropdown.Divider />
+            
             <NavDropdown.Item href="#action5">
-              Something else here
+            <Link to='/reservation'>
+            <NavDropdown.Item href="#action3">List of reservations</NavDropdown.Item>
+            </Link>
             </NavDropdown.Item>
           </NavDropdown>
           <HostAdd/>

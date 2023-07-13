@@ -6,19 +6,18 @@ import Navigation from '../Navigation'
 import UserCard from './UserCard'
 
 const UserList = () => {
+  var token=localStorage.getItem('token')
     const dispatch= useDispatch()
     useEffect(() => {
        
-        dispatch(Get_user())
-      
+      dispatch(Get_user())
       }, [dispatch])
     const users=useSelector(state=>state.UserReducer.users)
- 
     const [search,setSearch]=useState('')
   return (
     <div>
     {<Navigation  setSearch={setSearch}/>}
-    {users?.filter((el)=>el.name.toUpperCase().includes(search.toUpperCase()))?.map((el)=><UserCard key={el._id} el={el}/>)}
+    {users?.filter((el)=>el.name?.toUpperCase().includes(search?.toUpperCase()))?.map((el)=><UserCard key={el._id} el={el}/>)}
    
     
     </div>

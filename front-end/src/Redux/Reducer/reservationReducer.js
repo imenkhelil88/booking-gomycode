@@ -8,7 +8,8 @@ const initialState = {
     const ReservationReducer= (state = initialState, { type, payload }) => {
         switch (type) {
           case GET_RESERVATION:
-              return({...state,hosts:payload.host})
+              return({...state,reservations:payload.reservation})
+            // return({...state,reservation:payload})
         
           default:
              return state

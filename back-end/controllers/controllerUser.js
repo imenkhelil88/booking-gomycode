@@ -96,9 +96,9 @@ exports.EditUser=async(req,res)=>{
     }
 }
 exports.GetOne=async(req,res)=>{
-    const {name}=req.body
+    const {_id}=req.params
     try {
-        const user=await userSchema.find({name})
+        const user=await userSchema.find({_id})
         res.status(200).send({msg:"user found", user})
     } catch (error) {
         res.status(500).send(error)   

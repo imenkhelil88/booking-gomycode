@@ -14,21 +14,20 @@ const HostCard = ({el}) => {
  
   
   const[host,setHost]=useState(el?.host)
-  const[user,setUser]=useState(el?.user)
   const[dateDebut,setDateDebut]=useState(el?.dateDebut)
   const[dateFin,setDateFin]=useState(el?.dateFin)
   const[totalPrice ,setTotalPrice ]=useState(el?.totalPrice )
 
   const handleEdit=()=>{
-    dispatch(Edit_reservation(el._id,{host,user,dateDebut,dateFin,totalPrice}),handleClose(),window.location.reload())
+    dispatch(Edit_reservation(el._id,{host,dateDebut,dateFin,totalPrice}),handleClose(),window.location.reload())
   }
   return (
     <div>
        <Card style={{ width: '20rem' }}>
       <Card.Img variant="top" src={el?.host} alt='404' />
       <Card.Body>
-        <Card.Title>{el?.user}</Card.Title>
-        <h2>{el?.room}</h2>
+        
+        
         <Card.Text>
          {el?.dateDebut}
          {el?.dateFin}
@@ -57,12 +56,7 @@ const HostCard = ({el}) => {
         value={host}
       />
        
-      </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasic">
-        <Form.Label>User</Form.Label>
-        <Form.Control type="text" placeholder="Enter user" onChange={(e)=>setUser(e.target.value)} 
-          value={user}
-        />
+     
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Date de debut du séjour</Form.Label>

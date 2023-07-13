@@ -1,10 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Add_host } from '../../Redux/Action/HostAction';
+import { Get_user, get_one_user } from '../../Redux/Action/UserAction';
 
 const HostAdd = () => {
     const [show, setShow] = useState(false);
@@ -18,7 +19,13 @@ const HostAdd = () => {
     const[description,setDescription]=useState("")
     const[price,setPrice]=useState("")
     const[address,setAddress]=useState("")
-    
+    useEffect(()=>{
+      var token=localStorage.getItem("token")
+      dispatch(Get_user())
+      dispatch(get_one_user(token))
+
+    })
+    const role = useSelector((state)=>state.UserReducer.oneuser)
    
     const handleAdd=()=>{
         dispatch(Add_host({destination,room,image,description,price,address}),handleClose())
@@ -33,9 +40,9 @@ const HostAdd = () => {
    
   return (
     <div>
-    <Button variant="primary"  onClick={handleShow} >
+    {role.role==="admin"?<Button variant="primary"  onClick={handleShow} >
         add Host
-    </Button>
+    </Button>:null}
 
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
