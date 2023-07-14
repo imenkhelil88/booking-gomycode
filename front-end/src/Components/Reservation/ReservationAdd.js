@@ -24,7 +24,7 @@ const ReservationAdd = ({host_id}) => {
     dispatch(Get_user())
     dispatch(get_one_user(token))
 
-  })
+  },[dispatch])
   const userId = useSelector((state)=>state.UserReducer.oneuser)
    
     const handleAdd=()=>{
@@ -47,13 +47,13 @@ const ReservationAdd = ({host_id}) => {
        
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Date de debut du séjour</Form.Label>
-        <Form.Control type="text" placeholder="Enter date début" onChange={(e)=>setDateDebut(e.target.value)} 
+        <Form.Control type="date" placeholder="Enter date début" onChange={(e)=>setDateDebut(e.target.value)} 
           value={dateDebut}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmai">
         <Form.Label>Date de fin du séjour</Form.Label>
-        <Form.Control type="text" placeholder="Enter date fin" onChange={(e)=>setDateFin(e.target.value)} 
+        <Form.Control type="date" placeholder="Enter date fin" onChange={(e)=>setDateFin(e.target.value)} 
           value={dateFin}
         />
       </Form.Group>

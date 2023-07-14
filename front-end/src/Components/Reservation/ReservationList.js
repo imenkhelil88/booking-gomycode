@@ -12,7 +12,7 @@ const ReservationList = () => {
       
       }, [dispatch])
     const  reservations=useSelector(state=>state.ReservationReducer.reservations)
- console.log(reservations)
+ 
     
   return (
     <div>

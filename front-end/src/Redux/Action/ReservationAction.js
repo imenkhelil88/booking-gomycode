@@ -29,9 +29,9 @@ export const Delete_reservation=(id)=>async(dispatch)=>{
 }
 export const Edit_reservation=(id,data)=>async(dispatch)=>{
     try {
-        await axios.put("reseravtion/update/"+id,data)
+        await axios.put("reservation/update/"+id,data)
         dispatch(Get_reservation())
     } catch (error) {
-        console.log(error) 
+        console.log("reservation ne peut pas update",error) 
     }
 }

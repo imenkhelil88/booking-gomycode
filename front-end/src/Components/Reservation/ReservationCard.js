@@ -19,7 +19,7 @@ const HostCard = ({el}) => {
   const[totalPrice ,setTotalPrice ]=useState(el?.totalPrice )
 
   const handleEdit=()=>{
-    dispatch(Edit_reservation(el._id,{host,dateDebut,dateFin,totalPrice}),handleClose(),window.location.reload())
+    dispatch(Edit_reservation(el._id,{host,dateDebut,dateFin,totalPrice}),handleClose())
   }
   return (
     <div>
@@ -38,7 +38,7 @@ const HostCard = ({el}) => {
         
       </Card.Body>
       <Card.Footer>
-      <Button variant="danger" onClick={()=>dispatch(Delete_reservation(el._id),window.location.reload())}>Delete</Button>
+      <Button variant="danger" onClick={()=>dispatch(Delete_reservation(el._id))}>Delete</Button>
       <Button variant="warning"  onClick={handleShow}>
        Edit
     </Button>
@@ -60,13 +60,13 @@ const HostCard = ({el}) => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Date de debut du séjour</Form.Label>
-        <Form.Control type="text" placeholder="date debut" onChange={(e)=>setDateDebut(e.target.value)} 
+        <Form.Control type="date" placeholder="date debut" onChange={(e)=>setDateDebut(e.target.value)} 
           value={dateDebut}
         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmai">
         <Form.Label>Date de fin</Form.Label>
-        <Form.Control type="text" placeholder="Enter date fin" onChange={(e)=>setDateFin(e.target.value)} 
+        <Form.Control type="date" placeholder="Enter date fin" onChange={(e)=>setDateFin(e.target.value)} 
           value={dateFin}
         />
       </Form.Group>

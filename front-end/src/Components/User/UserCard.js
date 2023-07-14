@@ -21,7 +21,7 @@ const UserCard = ({el}) => {
   const[image,setImage]=useState(el?.image)
   const[phone,setPhone]=useState(el?.phone)
   const handleEdit=()=>{
-    dispatch(Edit_user(el._id,{name,email,password,birthdate,image,phone}),handleClose(),window.location.reload())
+    dispatch(Edit_user(el._id,{name,email,password,birthdate,image,phone}),handleClose())
   }
   return (
     <>

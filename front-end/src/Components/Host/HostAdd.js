@@ -6,6 +6,7 @@ import Form from 'react-bootstrap/Form';
 import { useDispatch, useSelector } from 'react-redux';
 import { Add_host } from '../../Redux/Action/HostAction';
 import { Get_user, get_one_user } from '../../Redux/Action/UserAction';
+import axios from 'axios';
 
 const HostAdd = () => {
     const [show, setShow] = useState(false);
@@ -15,7 +16,7 @@ const HostAdd = () => {
     const dispatch=useDispatch()
     const[destination,setDestination]=useState("")
     const[room,setRoom]=useState("")
-    const[image,setImage]=useState("")
+    const[image,setImage]=useState([])
     const[description,setDescription]=useState("")
     const[price,setPrice]=useState("")
     const[address,setAddress]=useState("")
@@ -24,23 +25,35 @@ const HostAdd = () => {
       dispatch(Get_user())
       dispatch(get_one_user(token))
 
-    })
+    },[dispatch])
     const role = useSelector((state)=>state.UserReducer.oneuser)
-   
-    const handleAdd=()=>{
-        dispatch(Add_host({destination,room,image,description,price,address}),handleClose())
-    }
-    // const handleAdmin=(data)=>{
-    //   if(data.user.role==='admin'){
-    //     {handleShow()}
-    //     console.log(data.user.role)
-    //   }
+  //   const handlesubmit =async()=>{
+  //     const formData= new FormData()
+  //     formData.append('file',image)
+  //     formData.append('upload_preset','ml_default')
+  //     await axios.post('http://api.cloudinary.com/v1_1/dvut377jf/upload',formData)
+  //     .then((res)=>{
+  //         dispatch (post_prodact({subject:subject,image:res.data.url,name:name}))
+  //     })
+
+
       
-    //  }
+  // }
+
    
+    const handleAdd=async()=>{
+      const formData= new FormData()
+      formData.append('file',image)
+      formData.append('upload_preset','ml_default')
+      await axios.post('http://api.cloudinary.com/v1_1/dvut377jf/upload',formData)
+      .then((res)=>{
+        dispatch(Add_host({destination,room,image:res.data.url,description,price,address}),handleClose())
+      })
+    }
+    
   return (
     <div>
-    {role.role==="admin"?<Button variant="primary"  onClick={handleShow} >
+    {role.role==="user"?<Button variant="primary"  onClick={handleShow} >
         add Host
     </Button>:null}
 
@@ -51,17 +64,17 @@ const HostAdd = () => {
         <Modal.Body>
         <Form.Group className="mb-3" controlId="formBasic">
         <Form.Label>Destination</Form.Label>
-        <Form.Control type="text" placeholder="Enter image" onChange={(e)=>setDestination(e.target.value)} 
+        <Form.Control type="text" placeholder="Enter destination" onChange={(e)=>setDestination(e.target.value)} 
         value={destination} />
       </Form.Group>
         <Form.Group className="mb-3" controlId="formBasic">
         <Form.Label>Image</Form.Label>
-        <Form.Control type="text" placeholder="Enter image" onChange={(e)=>setImage(e.target.value)} 
-        value={image} />
+        <Form.Control type="file" placeholder="Enter image" onChange={(e)=>setImage(e.target.files[0])} 
+         />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Room</Form.Label>
-        <Form.Control type="text" placeholder="Enter Room" onChange={(e)=>setRoom(e.target.value)} 
+        <Form.Control type="number" placeholder="Enter Room" onChange={(e)=>setRoom(e.target.value)} 
           value={room}
         />
       </Form.Group>
@@ -73,7 +86,7 @@ const HostAdd = () => {
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmai">
       <Form.Label>Price</Form.Label>
-      <Form.Control type="text" placeholder="Enter description" onChange={(e)=>setPrice(e.target.value)} 
+      <Form.Control type="number" placeholder="Enter description" onChange={(e)=>setPrice(e.target.value)} 
         value={price}
       />
     </Form.Group>

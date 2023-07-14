@@ -13,7 +13,7 @@ userRoutes.get("/logout",Logout)
 userRoutes.get("/current",isAuth)
 userRoutes.get("/",GetUser)
 userRoutes.delete("/:id",DeleteUser)
-userRoutes.put("/edit/:id",EditUser)
+userRoutes.put("/update/:id",EditUser)
 userRoutes.post("/filter",GetOne)
 userRoutes.get("/profile/:id",GetProfile)
 

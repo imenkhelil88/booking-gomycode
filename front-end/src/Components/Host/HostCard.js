@@ -25,7 +25,7 @@ const HostCard = ({el}) => {
     dispatch(Get_user())
     dispatch(get_one_user(token))
 
-  })
+  },[dispatch])
   const role = useSelector((state)=>state.UserReducer.oneuser)
   const handleEdit=()=>{
     dispatch(Edit_host(el._id,{destination,room,image,description,price,address}),handleClose(),window.location.reload())
