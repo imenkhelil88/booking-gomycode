@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Add_reservation } from '../../Redux/Action/ReservationAction';
 import { useNavigate } from 'react-router-dom';
 import { Get_user, get_one_user } from '../../Redux/Action/UserAction';
+import axios from 'axios';
 
 const ReservationAdd = ({host_id}) => {
     const [show, setShow] = useState(false);
@@ -15,6 +16,9 @@ const ReservationAdd = ({host_id}) => {
     const handleShow = () => setShow(true);
     const navigate=useNavigate()
     const dispatch=useDispatch()
+    const[email,setEmail]=useState("")
+    const[subject,setSubject]=useState("")
+    const[text,setText]=useState("")
   
   const[dateDebut,setDateDebut]=useState("")
   const[dateFin,setDateFin]=useState("")
@@ -29,7 +33,23 @@ const ReservationAdd = ({host_id}) => {
    
     const handleAdd=()=>{
       var useid=userId._id
-        dispatch(Add_reservation({host_id,useid,dateDebut,dateFin,totalPrice}),handleClose(),navigate('/reservation'))
+      
+        dispatch(Add_reservation({host_id,useid,dateDebut,dateFin,totalPrice}),
+        axios.post("/sendMail",{
+          email:email,
+          subject:subject,
+          text:text
+      }).then((res)=>{
+          console.log(res)
+          if(res.data.status==="success"){
+       setEmail("")
+       setSubject("")
+       setText("")
+       
+          }
+
+      })
+        ,handleClose(),navigate('/reservation'))
     }
    
    
